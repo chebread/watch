@@ -1,19 +1,27 @@
 # watch on terminal
 from datetime import *
 from clint.textui import *
-from clint.textui.colored import *
 import sys
 import os
 import os.path
-
+am_pm = 0
 def Isfile(f):
     if os.path.isfile(f):
         return 1
     return -1
 def Am(h):
+    global am_pm
     if h > 12:
-        return h - 12
-    return h
+        am_pm = 1
+        return h - 12 # 오후 1~11시까지
+    if h == 0:
+        am_pm = 0
+        return 12 # 오전 12시 표현
+    if h == 12:
+        am_pm = 1
+        return 12 # 오후 12시 표현
+    am_pm = 0
+    return h # 오전 1~11시까지
 def Weekdays(n):
     list = ['월', '화', '수', '목', '금', '토', '일']
     return list[n]
@@ -22,9 +30,15 @@ def LeapYear(y):
         return 1
     return -1
 def Time_12():
+    global am_pm
     print(colored.cyan("%s요일"%(Weekdays(datetime.now().today().weekday()))))
+    hour = Am(datetime.now().hour)
+    if am_pm == 1:
+        print(colored.red('오후 '), end='')
+    else:
+        print(colored.red('오전 '), end='')
     print(colored.blue("%s시 %s분 %s초"%(\
-    Am(datetime.now().hour), datetime.now().minute, datetime.now().second)))
+    hour, datetime.now().minute, datetime.now().second)))
     print(colored.green("%s년"%datetime.now().year), colored.magenta("%s월"%datetime.now().month), colored.magenta("%s일"%datetime.now().day))
 def Print():
     print(colored.yellow("시계"))
