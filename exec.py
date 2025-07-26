@@ -1,6 +1,6 @@
 # watch on terminal
 from datetime import *
-from clint.textui import *
+
 # global variable
 am_pm = 0
 # functions
@@ -22,15 +22,15 @@ def Weekdays(n):
     return list[n]
 def Time_12():
     global am_pm
-    print(colored.blue("%s요일"%\
-    (Weekdays(datetime.now().today().weekday()))), "☁️")
+    print("%s요일"%\
+    (Weekdays(datetime.now().today().weekday())), "☁️")
     hour = Am(datetime.now().hour)
     if am_pm == 1:
-        print(colored.blue('오후 '), end='')
+        print('오후 ', end='')
     else:
-        print(colored.blue('오전 '), end='')
-    print(colored.cyan("%s시"%hour), colored.cyan("%s분"%datetime.now().minute), colored.cyan("%s초"%(datetime.now().second)))
-    print(colored.blue("%s년"%datetime.now().year), colored.cyan("%s월"%datetime.now().month), colored.cyan("%s일"%datetime.now().day))
+        print('오전 ', end='')
+    print("%s시 "% hour, "%s분" % datetime.now().minute, "%s초" % datetime.now().second)
+    print("%s년" % datetime.now().year, "%s월" % datetime.now().month, "%s일" % datetime.now().day)
 def Print():
     Time_12()
 
