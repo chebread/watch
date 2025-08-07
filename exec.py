@@ -1,5 +1,5 @@
 # watch on terminal
-from datetime import *
+from datetime import datetime
 
 # global variable
 am_pm = 0
